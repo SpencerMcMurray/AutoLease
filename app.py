@@ -50,6 +50,7 @@ def home():
 
 
 @app.route('/settings')
+@log.login_required
 def settings():
     """ The Settings Page """
     years = bf.get_next_x_years(datetime.datetime.now().year, 10)
@@ -92,6 +93,17 @@ def signup():
             db.sign_up(request.form.get('email'), request.form.get('pass'))
             return redirect(url_for('login'))
     return render_template("signup.html", email=False, pass_match=True, user=log.current_user)
+
+
+@app.route('/account')
+@log.login_required
+def account():
+    """ The My Account Page """
+    # borrows = db.get_my_borrows(log.current_user.id)
+    # lendings = db.get_my_lendings(log.current_user.id)
+    borrows = [1, 2, 3]
+    lendings = [1, 2, 3, 4, 5]
+    return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings)
 
 
 @app.route('/borrow')

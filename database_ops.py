@@ -63,3 +63,28 @@ def fetch_user_from_email(email):
     user = db.cur.fetchone()
     db.con.close()
     return user
+
+
+def get_my_borrows(uid):
+    """(int) -> list of dict of str:obj
+    Returns the history of all cars borrowed by the user
+    """
+    db = Database()
+    q = """SELECT * FROM `borrows` WHERE `user` = %s"""
+    db.cur.execute(q, uid)
+    borrows = db.cur.fetchall()
+    db.con.close()
+    return borrows
+
+
+def get_my_lendings(uid):
+    """(int) -> list of dict of str:obj
+    Returns the history of all cars lent by the user
+    """
+    db = Database()
+    q = """SELECT * FROM `lendings` WHERE `lender` = %s"""
+    db.cur.execute(q, uid)
+    borrows = db.cur.fetchall()
+    db.con.close()
+    return borrows
+

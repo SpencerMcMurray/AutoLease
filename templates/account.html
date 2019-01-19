@@ -1,0 +1,26 @@
+{% extends "outline.html" %}
+{% block body %}
+<body class="text-center">
+    <div class="jumbotron">
+        <h1 class="display-4" style="text-align: center;">{{ user.email }}</h1>
+    </div>
+    <div class="container d-flex justify-content-around flex-wrap">
+        <div class="col-md-4">
+            <h1 class="display-4">Borrows</h1>
+        {% for borrow in borrows %}
+            <div class="row border rounded">
+                <h1>borrow #{{ loop.index0 }}</h1>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h1 class="display-4">Lendings</h1>
+        {% for lending in lendings %}
+            <div class="row border rounded">
+                <h1>lending #{{ loop.index0 }}</h1>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock body %}
