@@ -1,44 +1,68 @@
 {% extends "outline.html" %}
 {% block body %}<br>
-<body class="container text-center" style="width: 50%;">
-        <h1 class="display-4">Book a Smart Car</h1><br>
-        <div class="form-group">
-            <div class="col-md-5 mb-3">
-                <label>Choose Car model</label>
-                <select class="custom-select d-block w-100" id="country" required="">
-                  <option value="">Choose</option>
-                  <option>Tesla S</option>
-                </select>
+<body class="container text-center" style="width: 100%;">
+    <h1 class="display-4">Borrow A Car</h1><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group">
+                        <label for="modelSelectionInput">Car Model</label>
+                        <input class="form-control" id="modelSelectionInput" placeholder="Choose One">
+                        <small id="emailHelp" class="form-text text-muted">Every car has its own personality to match yours.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelSelectionInput">Set Your Own Deadline</label>
+                        <input class="form-control" id="modelSelectionInput" placeholder="Choose One">
+                        <small id="emailHelp" class="form-text text-muted">Decide how long you want to lease the car (max. 7 days). Be sure to return it by this time.</small>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-5 mb-3">
-                 <label>Set duration</label>
-                <input type="time" class="form-control" name="time-duration" id="time-duration" placeholder="Rental Duration">
+            <div class="col-md-3">
+                <label>You Pay</label>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                Base Fee
+                            </div>
+                            <div class="col-md-4">
+                                <small align="right" class="text-muted">$52.00</small>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-muted"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                Deposit
+                            </div>
+                            <div class="col-md-4">
+                                <small align="right" class="text-muted">$52.00</small>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-muted"></span>
+                </li>
+        
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                Total (CAD)
+                            </div>
+                            <div class="col-md-4">
+                                <small align="right" class="text-muted">$52.00</small>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-muted"></span>
+                </li>
+                <button class="btn btn-md btn-primary btn-block" type="submit" style="width: 100%; margin: 0 auto;">Book the car</button>
             </div>
         </div>
-            <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Base fee</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Collateral amount</h6>
-            <small class="text-muted">Brief description</small>
-          </div>
-          <span class="text-muted"></span>
-        </li>
-
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (CAD)</span>
-          <strong></strong>
-        </li>
-      </ul>
-            <div class="invalid-feedback">
-              Please select a valid car model
-            </div>
-        <button class="btn btn-md btn-primary btn-block" type="submit" style="width: 20%; margin: 0 auto;">Book the car</button>
+    </div>
 </body>
 {% endblock body %}
