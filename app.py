@@ -46,14 +46,14 @@ class User(log.UserMixin):
 @app.route('/')
 def home():
     """ The Home Page """
-    return render_template("home.html")
+    return render_template("home.html", user=log.current_user)
 
 
 @app.route('/settings')
 def settings():
     """ The Settings Page """
     years = bf.get_next_x_years(datetime.datetime.now().year, 10)
-    return render_template("settings.html", years=years)
+    return render_template("settings.html", years=years, user=log.current_user)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -64,12 +64,12 @@ def login():
         password = request.form.get('pass')
         login_success = db.login(email, password)
         if not login_success:
-            return render_template("login.html", err=True)
+            return render_template("login.html", err=True, user=log.current_user)
         else:
             user = db.fetch_user_from_email(email)
             log.login_user(User(user['id'], user['email']))
             return redirect(url_for('home'))
-    return render_template("login.html", err=False)
+    return render_template("login.html", err=False, user=log.current_user)
 
 
 @app.route('/logout')
@@ -87,16 +87,17 @@ def signup():
         email_exists = db.email_exists(request.form.get('email'))
         pass_match = bf.pass_match(request.form.get('pass'), request.form.get('rePass'))
         if email_exists or not pass_match:
-            return render_template("signup.html", email=email_exists, pass_match=pass_match)
+            return render_template("signup.html", email=email_exists, pass_match=pass_match, user=log.current_user)
         else:
             db.sign_up(request.form.get('email'), request.form.get('pass'))
             return redirect(url_for('login'))
-    return render_template("signup.html", email=False, pass_match=True)
+    return render_template("signup.html", email=False, pass_match=True, user=log.current_user)
+
 
 @app.route('/borrow')
 def borrow():
     """The borrow a car page"""
-    return render_template("borrow.html")
+    return render_template("borrow.html", user=log.current_user)
 
 
 @app.route('/smarcar/login', methods=['GET'])
