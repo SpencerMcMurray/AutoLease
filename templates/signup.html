@@ -1,8 +1,15 @@
 {% extends "outline.html" %}
-{% block body %}
-<body>
-    <div class="jumbotron">
-        <h1 class="display-4" style="text-align: center;">Signup Page</h1>
-    </div>
+{% block body %}<br>
+<body class="container text-center" style="width: 50%;">
+    <form class="form-signin">
+        <h1 class="display-4">Sign Up</h1><br>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <label for="retypePassword" class="sr-only">Retype Password</label>
+        <input type="password" id="retypePassword" class="form-control" placeholder="Password" required=""><br>
+        <button class="btn btn-md btn-primary btn-block" type="submit" style="width: 20%; margin: 0 auto;">Sign in</button>
+    </form>
 </body>
 {% endblock body %}
