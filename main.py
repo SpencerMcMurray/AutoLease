@@ -1,16 +1,9 @@
 import base64
 import random #for salt
-import string
-import requests
-import json
 import hashlib
 
 import authentication as authentication
-import contacts as contacts
 import moneyRequests as moneyRequests
-
-from datetime import datetime
-from time import gmtime, strftime
 
 url2 = 'https://gateway-web.beta.interac.ca/publicapi/api/v2/'
 
@@ -47,8 +40,8 @@ def main(email_id,amount):
     
     #moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
-    moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate,amount)
-    moneyRequests.getTranscationStatus()
+    moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
+    # moneyRequests.getTranscationStatus()
     #moneyRequests.cancelMoneyRequests(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
     #moneyRequests.noticeMoneyRequest(referenceNumber, access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
     #moneyRequests.putMoneyRequest(referenceNumber, access_token, thirdPartyAccessid, requestId, deviceID,  apiRegistrationId, fromDate, toDate)

@@ -497,30 +497,30 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
 #
 #     return (response.text)
 
-def getTranscationStatus():
-
-    conn = http.client.HTTPConnection("gateway-web,beta,interac,ca")
-
-    payload = "{\n\t\n}"
-
-    headers = {
-        'Content-Type':"application/json",
-        'accessToken':"Bearer e8ecd550-33db-456e-9671-b441c5e8fb33",
-        'thirdPartyAccessId':"CA1TAz4wCrnk8eyx",
-        'apiRegistrationId':"CA1ARHQj3sb5KWYD",
-        'requestId':"asdf",
-        'deviceId':"asdf",
-        'cache-control':"no-cache",
-        'Postman-Token':"809c0beb-76b5-427a-aa2b-dd38ae2e252b"
-    }
-
-    conn.request("GET", "publicapi,api,v2,money-requests,send", payload,
-                 headers)
-
-    res = conn.getresponse()
-    data = res.read()
-
-    return decode_money_request_status(str(data))
+# def getTranscationStatus():
+#
+#     conn = http.client.HTTPConnection("gateway-web,beta,interac,ca")
+#
+#     payload = "{\n\t\n}"
+#
+#     headers = {
+#         'Content-Type':"application/json",
+#         'accessToken':"Bearer e8ecd550-33db-456e-9671-b441c5e8fb33",
+#         'thirdPartyAccessId':"CA1TAz4wCrnk8eyx",
+#         'apiRegistrationId':"CA1ARHQj3sb5KWYD",
+#         'requestId':"asdf",
+#         'deviceId':"asdf",
+#         'cache-control':"no-cache",
+#         'Postman-Token':"809c0beb-76b5-427a-aa2b-dd38ae2e252b"
+#     }
+#
+#     conn.request("GET", "publicapi,api,v2,money-requests,send", payload,
+#                  headers)
+#
+#     res = conn.getresponse()
+#     data = res.read()
+#
+#     return decode_money_request_status(str(data))
 
 def generateRandomString():
     firstGate = random.randint(0,3)
