@@ -134,6 +134,7 @@ def smart_vehicle():
 
     return jsonify(info)
 
+
 @app.route('/smartcar/unlock', methods=['GET'])
 def smart_unlock():
     global access
@@ -143,6 +144,8 @@ def smart_unlock():
     print(vehicle)
     vehicle.unlock()
     return ""
+
+
 @app.route('/smartcar/lock', methods=['GET'])
 def smart_lock():
     global access
@@ -152,6 +155,7 @@ def smart_lock():
     print(vehicle)
     vehicle.lock()
     return ""
+
 
 @app.route('/smartcar/odom', methods=['GET'])
 def read_odom():
@@ -163,6 +167,7 @@ def read_odom():
     print(response)
     print(response["data"]["distance"])
     return ""
+
 
 if __name__ == '__main__':
     app.run(port=5000)
