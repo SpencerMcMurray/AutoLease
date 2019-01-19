@@ -1,3 +1,5 @@
+import sys, os
+sys.path.insert(0, os.path.abspath('..'))
 from database import Database
 from werkzeug.security import generate_password_hash, check_password_hash
 

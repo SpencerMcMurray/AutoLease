@@ -1,6 +1,6 @@
 import flask_login as log
-import functions.basic_functions as bf
-import functions.database_ops as db
+import basic_functions as bf
+import database_ops as db
 import datetime
 import smartcar
 import os
