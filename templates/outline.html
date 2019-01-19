@@ -3,14 +3,41 @@
 <head>
     <!-- Imports -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/main.css') }}">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 
     <meta charset="UTF-8">
     <title>AutoLease</title>
 </head>
 <header>
-    <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
+    <div class="topnav  d-flex align-self-center" id="myTopnav">
+            <a>
+                <img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" alt="AutoLease" href="{{ url_for('home') }}">
+            </a>
+            
+            <a class="nav-link" href="{{ url_for('borrow') }}">Borrow
+                    <span class="badge badge-pill badge-info">2</span>
+                </a>
+            <a class="nav-link" href="{{ url_for('borrow') }}">Lend
+                    <span class="badge badge-pill badge-warning">1</span>
+                    <span class="badge badge-pill badge-success">7</span>
+                </a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+            </div>
+            
+            <script>
+            function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+            }
+            </script>
+    <!-- <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url_for('home') }}">AutoLease</a>
@@ -42,7 +69,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 </header>
 <main style="padding: 50px 0;">
     {% block body %}
