@@ -29,6 +29,11 @@ def signup():
     """ The Sign Up Page """
     return render_template("signup.html")
 
+@app.route('/borrow')
+def borrow():
+    """The borrow a car page"""
+    return render_template("borrow.html")
+
 
 if __name__ == '__main__':
     app.run()
