@@ -3,7 +3,7 @@ import pymysql
 
 class Database:
     def __init__(self):
-        host = "den1.mysql5.gear.host"
+        host = "den1.mysql6.gear.host"
         port = 3306
         user = "autolease"
         password = "Em56bP59!21_"
