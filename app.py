@@ -1,10 +1,14 @@
+import flask_login as log
 import functions.basic_functions as bf
+import functions.database_ops as db
 import datetime
 import smartcar
-from flask import Flask, redirect, request, jsonify, render_template
+import os
+from flask import Flask, redirect, request, jsonify, render_template, url_for
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.secret_key = os.urandom(16)
 CORS(app)
 
 # global variable to save our access_token
@@ -17,6 +21,26 @@ client = smartcar.AuthClient(
     scope=['read_vehicle_info'],
     test_mode=True
 )
+login_manager = log.LoginManager()
+login_manager.init_app(app)
+
+
+""" LOGIN """
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    user = db.fetch_user_from_id(int(user_id))
+    return User(user['id'], user['email'])
+
+
+class User(log.UserMixin):
+    def __init__(self, usr_id, email):
+        self.id = int(usr_id)
+        self.email = email
+
+
+""" FLASK APP """
 
 
 @app.route('/')
@@ -32,16 +56,42 @@ def settings():
     return render_template("settings.html", years=years)
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
     """ The Log In Page """
-    return render_template("login.html")
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('pass')
+        login_success = db.login(email, password)
+        if not login_success:
+            return render_template("login.html", err=True)
+        else:
+            user = db.fetch_user_from_email(email)
+            log.login_user(User(user['id'], user['email']))
+            return redirect(url_for('home'))
+    return render_template("login.html", err=False)
 
 
-@app.route('/signup')
+@app.route('/logout')
+@log.login_required
+def logout():
+    log.logout_user()
+    return redirect(url_for('home'))
+
+
+@app.route('/signup', methods=["GET", "POST"])
 def signup():
     """ The Sign Up Page """
-    return render_template("signup.html")
+    if request.method == "POST":
+        # Catch any errors with form
+        email_exists = db.email_exists(request.form.get('email'))
+        pass_match = bf.pass_match(request.form.get('pass'), request.form.get('rePass'))
+        if email_exists or not pass_match:
+            return render_template("signup.html", email=email_exists, pass_match=pass_match)
+        else:
+            db.sign_up(request.form.get('email'), request.form.get('pass'))
+            return redirect(url_for('login'))
+    return render_template("signup.html", email=False, pass_match=True)
 
 @app.route('/borrow')
 def borrow():

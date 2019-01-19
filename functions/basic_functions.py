@@ -6,3 +6,10 @@ def get_next_x_years(year, x):
     for i in range(year, year + x):
         years.append(i)
     return years
+
+
+def pass_match(pass1, pass2):
+    """(str, str) -> bool
+    Returns True iff pass1 == pass2
+    """
+    return pass1 == pass2
