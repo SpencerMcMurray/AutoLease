@@ -10,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
 CORS(app)
-
+locked = 0
 # global variable to save our access_token
 access = None
 
@@ -18,7 +18,7 @@ client = smartcar.AuthClient(
     client_id='8af861e3-570a-45f5-b321-ef755778ff42',
     client_secret='5347869a-217b-4775-ae3e-c5ed66380c82',
     redirect_uri='http://localhost:5000/smartcar/exchange',
-    scope=['read_vehicle_info', 'control_security', 'read_odometer'],
+    scope=['read_vehicle_info', 'control_security', 'read_odometer', 'read_location'],
     test_mode=False
 )
 login_manager = log.LoginManager()
@@ -143,6 +143,8 @@ def smart_unlock():
     vehicle = smartcar.Vehicle(vehicle_ids[0], access['access_token'])
     print(vehicle)
     vehicle.unlock()
+    global locked
+    locked = 1
     return ""
 
 
@@ -154,6 +156,8 @@ def smart_lock():
     vehicle = smartcar.Vehicle(vehicle_ids[0], access['access_token'])
     print(vehicle)
     vehicle.lock()
+    global locked
+    locked = 0
     return ""
 
 
@@ -168,6 +172,15 @@ def read_odom():
     print(response["data"]["distance"])
     return ""
 
+@app.route('/smartcar/local', methods=['GET'])
+def get_local():
+    global access
+    vehicle_ids = smartcar.get_vehicle_ids(
+        access['access_token'])['vehicles']
+    vehicle = smartcar.Vehicle(vehicle_ids[0], access['access_token'])
+    response = vehicle.location()
+    print(response)
+    return ""
 
 if __name__ == '__main__':
     app.run(port=5000)
