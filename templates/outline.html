@@ -20,15 +20,23 @@
             </div>
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('borrow') }}">Book a Smartcar</a></li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('borrow') }}">Borrow
+                            <span class="badge badge-pill badge-warning">2</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('borrow') }}">Lend
+                        <span class="badge badge-pill badge-info">7</span>
+                    </a></li>
                 </ul>
                 <ul class="navbar-nav">
                     {% if not user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
                     {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
                     {% endif %}
                 </ul>
