@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import functions.basic_functions as bf
+import datetime
 
 app = Flask(__name__)
 
@@ -12,7 +14,8 @@ def home():
 @app.route('/settings')
 def settings():
     """ The Settings Page """
-    return render_template("settings.html")
+    years = bf.get_next_x_years(datetime.datetime.now().year, 10)
+    return render_template("settings.html", years=years)
 
 
 @app.route('/login')
