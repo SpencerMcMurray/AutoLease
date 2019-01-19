@@ -1,7 +1,8 @@
-import sys, os
-sys.path.insert(0, os.path.abspath('..'))
+import sys
+import os
 from database import Database
 from werkzeug.security import generate_password_hash, check_password_hash
+sys.path.insert(0, os.path.abspath('..'))
 
 
 def email_exists(email):
@@ -70,7 +71,7 @@ def get_my_borrows(uid):
     Returns the history of all cars borrowed by the user
     """
     db = Database()
-    q = """SELECT * FROM `borrows` WHERE `user` = %s"""
+    q = """SELECT * FROM `borrows` WHERE `user` = %s ORDER BY `date` ASC"""
     db.cur.execute(q, uid)
     borrows = db.cur.fetchall()
     db.con.close()
@@ -82,7 +83,7 @@ def get_my_lendings(uid):
     Returns the history of all cars lent by the user
     """
     db = Database()
-    q = """SELECT * FROM `lendings` WHERE `lender` = %s"""
+    q = """SELECT * FROM `lendings` WHERE `lender` = %s ORDER BY `date` ASC"""
     db.cur.execute(q, uid)
     borrows = db.cur.fetchall()
     db.con.close()

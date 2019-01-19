@@ -4,13 +4,13 @@ import database_ops as db
 import datetime
 import smartcar
 import os
-from flask import Flask, redirect, request, jsonify, render_template, url_for
+from flask import Flask, redirect, request, jsonify, render_template, url_for, session
 from flask_cors import CORS
 
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
 CORS(app)
-locked = 0
+locked = 1
 # global variable to save our access_token
 access = None
 
@@ -38,6 +38,11 @@ class User(log.UserMixin):
     def __init__(self, usr_id, email):
         self.id = int(usr_id)
         self.email = email
+
+
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
 
 
 """ FLASK APP """
@@ -99,11 +104,9 @@ def signup():
 @log.login_required
 def account():
     """ The My Account Page """
-    # borrows = db.get_my_borrows(log.current_user.id)
-    # lendings = db.get_my_lendings(log.current_user.id)
-    borrows = [1, 2, 3]
-    lendings = [1, 2, 3, 4, 5]
-    return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings)
+    borrows = db.get_my_borrows(log.current_user.id)
+    lendings = db.get_my_lendings(log.current_user.id)
+    return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings, locked=locked)
 
 
 @app.route('/borrow')
@@ -127,7 +130,7 @@ def smart_exchange():
     # in a production app you'll want to store this in some kind of
     # persistent storage
     access = client.exchange_code(code)
-    return '', 200
+    return redirect((url_for('smart_lock') if locked == 1 else url_for('smart_unlock')))
 
 
 @app.route('/smartcar/vehicles', methods=['GET'])
@@ -148,6 +151,7 @@ def smart_vehicle():
 
 
 @app.route('/smartcar/unlock', methods=['GET'])
+@log.login_required
 def smart_unlock():
     global access
     vehicle_ids = smartcar.get_vehicle_ids(
@@ -156,11 +160,12 @@ def smart_unlock():
     print(vehicle)
     vehicle.unlock()
     global locked
-    locked = 1
-    return ""
+    locked = 0
+    return redirect(url_for('account'))
 
 
 @app.route('/smartcar/lock', methods=['GET'])
+@log.login_required
 def smart_lock():
     global access
     vehicle_ids = smartcar.get_vehicle_ids(
@@ -169,8 +174,8 @@ def smart_lock():
     print(vehicle)
     vehicle.lock()
     global locked
-    locked = 0
-    return ""
+    locked = 1
+    return redirect(url_for('account'))
 
 
 @app.route('/smartcar/odom', methods=['GET'])
@@ -184,6 +189,7 @@ def read_odom():
     print(response["data"]["distance"])
     return ""
 
+
 @app.route('/smartcar/local', methods=['GET'])
 def get_local():
     global access
@@ -193,6 +199,7 @@ def get_local():
     response = vehicle.location()
     print(response)
     return ""
+
 
 if __name__ == '__main__':
     app.run(port=5000)
