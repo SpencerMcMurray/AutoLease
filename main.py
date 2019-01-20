@@ -27,7 +27,7 @@ def main(email_id,amount):
 
     print('starting')
 
-    access_token = '3c1bec2a-4ddd-48c1-af6c-9935eab6096b'
+    access_token = 'b51e7f6a-18ef-473d-afe7-b5abbd026d9c'
 
     # contacts.addContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, email, name)
     # contacts.getContacts(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
@@ -56,4 +56,4 @@ def createSalt():
     return "".join(chars)
 
 if __name__ == '__main__':
-    main("sohampathak991@beta.inter.ac","100")
+    main("sohampathak991@icloud.com","100")

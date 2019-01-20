@@ -209,7 +209,7 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
     		"language" : language,
     		"notificationPreferences": [
     			{
-        		"handle": "sohampathak991@beta.inter.ac",
+        		"handle": "sohampathak991@icloud.com",
         		"handleType": "email",
         		"active": True
       			}
@@ -238,7 +238,7 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
     print(response.status_code)
     dataRec = response.json()
     print('sendMoneyRequestOneTimeContact Data: ')
-    # print(dataRec)
+    print(dataRec)
     return dataRec['paymentGatewayUrl']
 
 #
@@ -496,33 +496,15 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
 #
 #     return (response.text)
 
-# def getTranscationStatus():
-#
-#     url = "https://gateway-web.beta.interac.ca/publicapi/api/v2/money-requests/send"
-#
-#     # querystring = {"referenceNumber":referenceNumber}
-#     querystring = {"toDate": "2019-02-21T16:12:12.000Z", "fromDate": "2019-01-2T16:12:12.000Z"}
-#     payload = "{\n\t\n}"
-#     headers = {
-#         'Content-Type':"application/json",
-#         'accessToken':"Bearer 406d2f45-263d-4dbd-ad08-8176907cab25",
-#         'thirdPartyAccessId':"CA1TAuUG9Ned35wF",
-#         'apiRegistrationId':"CA1ARFrD8x2J5U94",
-#         'requestId':"asdf",
-#         'deviceId':"asdf",
-#         'cache-control':"no-cache",
-#         'Postman-Token':"9a730192-d4eb-4805-869a-6e7a83a0c211"
-#     }
-#     response = requests.request("GET", url, data = payload, headers = headers,  params = querystring)
-#     return response.json()
 
+def generateRandomString(size = 7, chars = string.ascii_uppercase + string.digits):
 
-def generateRandomString():
-    firstGate = random.randint(0,3)
-    if firstGate == 0:
-        secondGate = str(random.randint(0,10))
-    elif firstGate == 1:
-        secondGate = chr(random.randint(65,91))
-    else:
-        secondGate = chr(random.randint(97,123))
-    return secondGate
+        return ''.join(random.choice(chars) for _ in range(size))
+    # firstGate = random.randint(0,3)
+    # if firstGate == 0:
+    #     secondGate = str(random.randint(0,10))
+    # elif firstGate == 1:
+    #     secondGate = chr(random.randint(65,91))
+    # else:
+    #     secondGate = chr(random.randint(97,123))
+    # return secondGate
