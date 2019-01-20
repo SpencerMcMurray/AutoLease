@@ -16,7 +16,7 @@ access = None
 
 client = smartcar.AuthClient(
     client_id='8af861e3-570a-45f5-b321-ef755778ff42',
-    client_secret='5347869a-217b-4775-ae3e-c5ed66380c82',
+    client_secret='bacddc7a-d359-46de-a56d-d6f5c338edc5',
     redirect_uri='http://localhost:5000/smartcar/exchange',
     scope=['read_vehicle_info', 'control_security', 'read_odometer', 'read_location'],
     test_mode=False
@@ -118,11 +118,12 @@ def account():
 def borrow():
     """The borrow a car page"""
     if request.method == "POST":
-        # Ugly, but thats life.
+        print(request.form.get('total-in'))
+        # Ugly, but that's life.
         money_url = sendMoneyRequestOneTimeContact('b51e7f6a-18ef-473d-afe7-b5abbd026d9c',
                                                    'CA1TAuUG9Ned35wF', 'requestID',
                                                    'deviceID', 'CA1ARFrD8x2J5U94', '2019-01-18T16:12:12.000Z',
-                                                   '2019-01-20T16:12:12.000Z', int(request.form.get('total')))
+                                                   '2019-01-20T16:12:12.000Z', int(request.form.get('total-in')))
         session['model'] = request.form.get('model')
         session['time'] = request.form.get('time')
         return render_template("borrow.html", user=log.current_user, money_url=money_url)

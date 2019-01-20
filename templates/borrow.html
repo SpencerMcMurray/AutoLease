@@ -22,7 +22,7 @@ $(document).ready(function (e) {
 
     let total = depo + base;
     $("#total-fee").text("$" + (total).toString() + ".00");
-    $("#total-in").value = total;
+    $("#total-in").val(total);
 });
 </script>
 {% if money_url != None %}
@@ -33,7 +33,7 @@ $(document).ready(function (e) {
 <body>
     <div class="container-fluid text-center" style="width: 100%;">
         <h1 class="display-4">Borrow A Car</h1><br>
-        <form>
+        <form method="POST">
         <input id="total-in" type="hidden" name="total-in" value="filler">
         <div class="row">
             <div class="col-md-9">
