@@ -420,81 +420,81 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
 #  * return string                       [JSON string with all the existing money requests]
 #  * Important to get rid of contact id and hash id and specify the email for request
 # '''
-# def getMoneyRequest(access_token, thirdPartyAccessId, requestId, deviceId, apiRegistrationId, fromDate = 'string',  toDate='string', maxResponseItems='string', offset='string', sortBy='string', orderBy='string', sourceMoneyRequestId='string', referenceNumber='string', applicationId='string', params = ''):
-#
-#     params = ''
-#
-#     if fromDate != 'string':
-#         if len(params) == 0:
-#             params += ('?fromDate=' + fromDate)
-#         else:
-#             params += ('&fromDate=' + fromDate)
-#
-#     if toDate != 'string':
-#         if len(params) == 0:
-#             params += ('?toDate=' + toDate)
-#         else:
-#             params += ('&toDate=' + toDate)
-#
-#     if maxResponseItems != 'string':
-#         if len(params) == 0:
-#             params += ('?maxResponseItems=' + maxResponseItems)
-#         else:
-#             params += ('&maxResponseItems=' + maxResponseItems)
-#
-#     if offset != 'string':
-#         if len(params) == 0:
-#             params += ('?offset=' + offset)
-#         else:
-#             params += ('&offset=' + offset)
-#
-#     if sortBy != 'string':
-#         if len(params) == 0:
-#             params += ('?sortBy=' + sortBy)
-#         else:
-#             params += ('&sortBy=' + sortBy)
-#
-#     if orderBy != 'string':
-#         if len(params) == 0:
-#             params += ('?referenceNumber=' + referenceNumber)
-#         else:
-#             params += ('&referenceNumber=' + referenceNumber)
-#
-#     if sourceMoneyRequestId != 'string':
-#         if len(params) == 0:
-#             params += ('?sourceMoneyRequestId=' + sourceMoneyRequestId)
-#         else:
-#             params += ('&sourceMoneyRequestId=' + sourceMoneyRequestId)
-#
-#     if referenceNumber != 'string':
-#         if len(params) == 0:
-#             params += ('?referenceNumber=' + referenceNumber)
-#         else:
-#             params += ('&referenceNumber=' + referenceNumber)
-#
-#     if applicationId != 'string':
-#         if len(params) == 0:
-#             params += ('?applicationId=' + applicationId)
-#         else:
-#             params += ('&applicationId=' + applicationId)
-#
-#     print(params)
-#
-#     headerBody = {
-#         'accessToken': 'Bearer ' + access_token,
-#         'thirdPartyAccessId': thirdPartyAccessId,
-#         'requestId': requestId,
-#         'deviceId': deviceId,
-#         'apiRegistrationId': apiRegistrationId
-#         }
-#
-#     #response = requests.get(url2 + 'money-requests'+'/send' + str(params), headers = headers)
-#     response = requests.get(url2+'money-requests'+'/send' + params, headers = headerBody)
-#     print('retrieved money requests: ')
-#     print(response.status_code)
-#     print(response.text)
-#
-#     return (response.text)
+def getMoneyRequest(access_token, thirdPartyAccessId, requestId, deviceId, apiRegistrationId, fromDate = 'string',  toDate='string', maxResponseItems='string', offset='string', sortBy='string', orderBy='string', sourceMoneyRequestId='string', referenceNumber='string', applicationId='string', params = ''):
+
+    params = ''
+
+    if fromDate != 'string':
+        if len(params) == 0:
+            params += ('?fromDate=' + fromDate)
+        else:
+            params += ('&fromDate=' + fromDate)
+
+    if toDate != 'string':
+        if len(params) == 0:
+            params += ('?toDate=' + toDate)
+        else:
+            params += ('&toDate=' + toDate)
+
+    if maxResponseItems != 'string':
+        if len(params) == 0:
+            params += ('?maxResponseItems=' + maxResponseItems)
+        else:
+            params += ('&maxResponseItems=' + maxResponseItems)
+
+    if offset != 'string':
+        if len(params) == 0:
+            params += ('?offset=' + offset)
+        else:
+            params += ('&offset=' + offset)
+
+    if sortBy != 'string':
+        if len(params) == 0:
+            params += ('?sortBy=' + sortBy)
+        else:
+            params += ('&sortBy=' + sortBy)
+
+    if orderBy != 'string':
+        if len(params) == 0:
+            params += ('?referenceNumber=' + referenceNumber)
+        else:
+            params += ('&referenceNumber=' + referenceNumber)
+
+    if sourceMoneyRequestId != 'string':
+        if len(params) == 0:
+            params += ('?sourceMoneyRequestId=' + sourceMoneyRequestId)
+        else:
+            params += ('&sourceMoneyRequestId=' + sourceMoneyRequestId)
+
+    if referenceNumber != 'string':
+        if len(params) == 0:
+            params += ('?referenceNumber=' + referenceNumber)
+        else:
+            params += ('&referenceNumber=' + referenceNumber)
+
+    if applicationId != 'string':
+        if len(params) == 0:
+            params += ('?applicationId=' + applicationId)
+        else:
+            params += ('&applicationId=' + applicationId)
+
+    print(params)
+
+    headerBody = {
+        'accessToken': 'Bearer ' + access_token,
+        'thirdPartyAccessId': thirdPartyAccessId,
+        'requestId': requestId,
+        'deviceId': deviceId,
+        'apiRegistrationId': apiRegistrationId
+        }
+
+    #response = requests.get(url2 + 'money-requests'+'/send' + str(params), headers = headers)
+    response = requests.get(url2+'money-requests'+'/send' + params, headers = headerBody)
+    print('retrieved money requests: ')
+    print(response.status_code)
+    print(response.text)
+
+    return (response.text)
 
 
 def generateRandomString(size = 7, chars = string.ascii_uppercase + string.digits):

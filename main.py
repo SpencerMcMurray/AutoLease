@@ -20,13 +20,11 @@ def main(email_id,amount):
     name = 'soham'
     contactID = 'CA56aj6jHQQB'
     encodedKey = encodeSecretKey(keyAndSalt)
-    toDate = '2019-01-23T16:12:12.000Z'
+    toDate = '2019-01-20T16:12:12.000Z'
     randomID = '34674366743hsvgkjvgskvb'
-    fromDate = '2019-01-22T16:12:12.000Z'
+    fromDate = '2019-01-18T16:12:12.000Z'
     referenceNumber = 'CAXnpT5h'
-
     print('starting')
-
     access_token = 'b51e7f6a-18ef-473d-afe7-b5abbd026d9c'
 
     # contacts.addContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, email, name)
@@ -38,7 +36,7 @@ def main(email_id,amount):
     
     #money
 
-    #moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
+    print(moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate))
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
     link=moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
     print(link)
