@@ -16,7 +16,7 @@ access = None
 
 client = smartcar.AuthClient(
     client_id='8af861e3-570a-45f5-b321-ef755778ff42',
-    client_secret='5347869a-217b-4775-ae3e-c5ed66380c82',
+    client_secret='bacddc7a-d359-46de-a56d-d6f5c338edc5',
     redirect_uri='http://localhost:5000/smartcar/exchange',
     scope=['read_vehicle_info', 'control_security', 'read_odometer', 'read_location'],
     test_mode=False

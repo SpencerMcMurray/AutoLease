@@ -33,6 +33,7 @@ def main(email_id, amount):
     # contacts.deleteContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, contactID)
     # contacts.getContactThroughContactID(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, contactID)
 
+<<<<<<< HEAD
     # money
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
     payload = moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid,
@@ -64,6 +65,15 @@ def main(email_id, amount):
     #     ref = link.split("/")[-1]
 
 
+=======
+    
+    #money
+
+    print(moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate))
+    # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
+    link=moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
+    print(link)
+>>>>>>> parent of e10795e... Created get status for reference number
 def encodeSecretKey(keyAndSalt):
     h = hashlib.sha256()
     h.update(keyAndSalt.encode())
