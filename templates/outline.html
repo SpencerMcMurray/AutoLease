@@ -3,73 +3,48 @@
 <head>
     <!-- Imports -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-    
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
 
     <meta charset="UTF-8">
     <title>AutoLease</title>
 </head>
 <header>
-    <div class="topnav  d-flex align-self-center" id="myTopnav">
-            <a>
-                <img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" alt="AutoLease" href="{{ url_for('home') }}">
-            </a>
-            
-            <a class="nav-link" href="{{ url_for('borrow') }}">Borrow
-                    <span class="badge badge-pill badge-info">2</span>
-                </a>
-            <a class="nav-link" href="{{ url_for('borrow') }}">Lend
-                    <span class="badge badge-pill badge-warning">1</span>
-                    <span class="badge badge-pill badge-success">7</span>
-                </a>
-            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-            </div>
-            
-            <script>
-            function myFunction() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-            }
-            </script>
-    <!-- <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('home') }}">AutoLease</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav mr-auto">
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('borrow') }}">Borrow
-                            <span class="badge badge-pill badge-warning">2</span>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('borrow') }}">Lend
-                        <span class="badge badge-pill badge-info">7</span>
-                    </a></li>
-                </ul>
-                <ul class="navbar-nav">
-                    {% if not user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">My Account</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav> -->
+    <nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('home') }}">
+					<img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" alt="AutoLease">
+				</a>
+				<button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="mainNav">
+				<ul class="navbar-nav mr-auto">
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('borrow') }}">Borrow</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('borrow') }}">Lend</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav">
+					{% if not user.is_authenticated %}
+						<li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
+					{% else %}
+						<li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">My Account</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{ url_for('settings') }}">Settings</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div
+    </nav>
 </header>
 <main style="padding: 50px 0;">
     {% block body %}

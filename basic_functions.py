@@ -1,5 +1,8 @@
-import sys, os
+import sys
+import os
 sys.path.insert(0, os.path.abspath('..'))
+
+
 def get_next_x_years(year, x):
     """(int, int) -> list of int
     Returns the next x years after and including year in a list
