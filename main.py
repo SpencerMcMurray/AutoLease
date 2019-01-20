@@ -1,7 +1,7 @@
 import base64
 import random #for salt
 import hashlib
-
+import time
 import authentication as authentication
 import moneyRequests as moneyRequests
 
@@ -36,17 +36,25 @@ def main(email_id,amount):
     
     #money
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
-    ref = moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate,'CA1MRS2QrhGr')
+    payload = moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate,'CA1MRjpTs4wQ')
     link = moneyRequests.sendMoneyRequestOneTimeContact(access_token,
                                                         thirdPartyAccessid,
                                                         requestId, deviceID,
                                                         apiRegistrationId,
                                                         fromDate, toDate,
                                                         amount)
-    # print(ref)
-    print(moneyRequests.get_status_from_dict(ref))
-    # while(moneyRequests.get_status_from_dict(ref)!='8' or moneyRequests.get_status_from_dict(ref)!='7'):
-    #     ref = link.split("/")[-1]
+    status = moneyRequests.get_status_from_dict(payload)
+    while (status not in "78"):
+        print(status)
+        link = moneyRequests.sendMoneyRequestOneTimeContact(access_token,
+                                                        thirdPartyAccessid,
+                                                        requestId, deviceID,
+                                                        apiRegistrationId,
+                                                        fromDate, toDate,
+                                                        amount)
+        slug = link.split("/")[-1]
+        payload = moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate,'CA1MRS2QrhGr')
+        time.sleep(15)
 
 def encodeSecretKey(keyAndSalt):
     h = hashlib.sha256()
