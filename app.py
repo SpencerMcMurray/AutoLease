@@ -10,7 +10,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
 CORS(app)
-locked = 1
 # global variable to save our access_token
 access = None
 
@@ -100,13 +99,18 @@ def signup():
     return render_template("signup.html", email=False, pass_match=True, user=log.current_user)
 
 
-@app.route('/account')
+@app.route('/account', methods=["GET", "POST"])
 @log.login_required
 def account():
     """ The My Account Page """
+    lend_id = -1
+    if request.method == "POST":
+        lend_id = request.form.get('id')
+        session['lend'] = lend_id
+        print(lend_id)
     borrows = db.get_my_borrows(log.current_user.id)
     lendings = db.get_my_lendings(log.current_user.id)
-    return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings, locked=locked)
+    return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings, lend_id=lend_id)
 
 
 @app.route('/borrow')
@@ -130,7 +134,7 @@ def smart_exchange():
     # in a production app you'll want to store this in some kind of
     # persistent storage
     access = client.exchange_code(code)
-    return redirect((url_for('smart_lock') if locked == 1 else url_for('smart_unlock')))
+    return redirect(url_for('smart_unlock'))
 
 
 @app.route('/smartcar/vehicles', methods=['GET'])
@@ -160,19 +164,6 @@ def smart_unlock():
     vehicle.unlock()
     global locked
     locked = 0
-    return redirect(url_for('confirm'))
-
-
-@app.route('/smartcar/lock', methods=['GET'])
-def smart_lock():
-    global access
-    vehicle_ids = smartcar.get_vehicle_ids(
-        access['access_token'])['vehicles']
-    vehicle = smartcar.Vehicle(vehicle_ids[0], access['access_token'])
-    print(vehicle)
-    vehicle.lock()
-    global locked
-    locked = 1
     return redirect(url_for('confirm'))
 
 
