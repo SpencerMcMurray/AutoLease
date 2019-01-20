@@ -151,7 +151,6 @@ def smart_vehicle():
 
 
 @app.route('/smartcar/unlock', methods=['GET'])
-@log.login_required
 def smart_unlock():
     global access
     vehicle_ids = smartcar.get_vehicle_ids(
@@ -161,11 +160,10 @@ def smart_unlock():
     vehicle.unlock()
     global locked
     locked = 0
-    return redirect(url_for('close'))
+    return redirect(url_for('confirm'))
 
 
 @app.route('/smartcar/lock', methods=['GET'])
-@log.login_required
 def smart_lock():
     global access
     vehicle_ids = smartcar.get_vehicle_ids(
@@ -175,13 +173,13 @@ def smart_lock():
     vehicle.lock()
     global locked
     locked = 1
-    return redirect(url_for('close'))
+    return redirect(url_for('confirm'))
 
 
 @app.route('/smartcar/confirm')
 def confirm():
     """ The Page for confirming that the car has been lock/unlocked """
-    return render_template("confirm_unlock.html", locked=locked)
+    return render_template("confirm_unlock.html", locked=locked, user=log.current_user)
 
 
 @app.route('/smartcar/odom', methods=['GET'])
