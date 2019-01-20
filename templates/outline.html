@@ -13,23 +13,23 @@
     <title>AutoLease</title>
 </head>
 <header class="text-center">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" background-color="black">
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="nav-link text-white mr-auto" href="{{ url_for('home') }}">
-            <img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" alt="AutoLease">
+            <img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536437261374586880/dark_logo_small.png" alt="AutoLease">
             <span class="sr-only">(current)</span>
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a class="nav-link text-white" href="{{ url_for('borrow') }}" id="mainNav">Borrow</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link text-white" href="{{ url_for('borrow') }}">Lend</a>
-              </li>
-          </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('borrow') }}" id="mainNav">Borrow</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('borrow') }}">Lend</a>
+                </li>
+            </ul>
             <ul class="navbar-nav">
                 {% if not user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('login') }}">Login</a></li>
@@ -43,7 +43,7 @@
         </div>
     </nav>
 </header>
-<main style="padding: 50px 0;">
+<main>
     {% block body %}
     {% endblock body %}
 </main>
