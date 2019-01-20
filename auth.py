@@ -77,8 +77,8 @@ def main():
     requestId = 'requestID'
     deviceID = 'deviceID'
     apiRegistrationId = 'CA1ARFrD8x2J5U94'
-    email = 'chaudherymanik@yahoo.com'
-    name = 'bhai'
+    email = 'sohampathak991@icould.com'
+    name = 'soham'
     contactID = 'CAb6354mWzEW'    
     encodedKey = encodeSecretKey(keyAndSalt)
     print(encodedKey)
@@ -88,7 +88,7 @@ def main():
 
     randomID = '34674366743hsvgkjvgskvb'
     fromDate = '2018-05-16T16:12:12.000Z'
-    referenceNumber = 'CA1MRqNhTkFJ'
+    referenceNumber = ''
 
     print('starting')
 

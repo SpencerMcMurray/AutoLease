@@ -20,31 +20,28 @@ def main(email_id,amount):
     name = 'soham'
     contactID = 'CA56aj6jHQQB'
     encodedKey = encodeSecretKey(keyAndSalt)
-    toDate = '2019-01-21T16:12:12.000Z'
+    toDate = '2019-01-23T16:12:12.000Z'
     randomID = '34674366743hsvgkjvgskvb'
-    fromDate = '2019-01-20T16:12:12.000Z'
+    fromDate = '2019-01-22T16:12:12.000Z'
     referenceNumber = 'CAXnpT5h'
 
     print('starting')
 
-    access_token = '406d2f45-263d-4dbd-ad08-8176907cab25'
+    access_token = 'b51e7f6a-18ef-473d-afe7-b5abbd026d9c'
 
     # contacts.addContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, email, name)
     # contacts.getContacts(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
     #contacts.putContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, email, name, contactID)
     #contacts.deleteContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, contactID)
     #contacts.getContactThroughContactID(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, contactID)
-    
+
     
     #money
-    
+
     #moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
-    moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
-    print(moneyRequests.getTranscationStatus())
-    #moneyRequests.cancelMoneyRequests(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
-    #moneyRequests.noticeMoneyRequest(referenceNumber, access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
-    #moneyRequests.putMoneyRequest(referenceNumber, access_token, thirdPartyAccessid, requestId, deviceID,  apiRegistrationId, fromDate, toDate)
+    link=moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
+    print(link)
 def encodeSecretKey(keyAndSalt):
     h = hashlib.sha256()
     h.update(keyAndSalt.encode())
@@ -59,7 +56,4 @@ def createSalt():
     return "".join(chars)
 
 if __name__ == '__main__':
-    main("sohampathak991@beta.inter.ac","100")
-    while(moneyRequests.getTranscationStatus()==False):
-        moneyRequests.getTranscationStatus()
-    print(moneyRequests.getTranscationStatus())
+    main("sohampathak991@icloud.com","100")
