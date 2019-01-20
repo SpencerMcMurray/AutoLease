@@ -74,7 +74,7 @@ def login():
         else:
             user = db.fetch_user_from_email(email)
             log.login_user(User(user['id'], user['email']))
-            return redirect(url_for('home'))
+            return redirect(url_for('account'))
     return render_template("login.html", err=False, user=log.current_user)
 
 
@@ -161,7 +161,7 @@ def smart_unlock():
     vehicle.unlock()
     global locked
     locked = 0
-    return redirect(url_for('account'))
+    return redirect(url_for('close'))
 
 
 @app.route('/smartcar/lock', methods=['GET'])
@@ -175,7 +175,13 @@ def smart_lock():
     vehicle.lock()
     global locked
     locked = 1
-    return redirect(url_for('account'))
+    return redirect(url_for('close'))
+
+
+@app.route('/smartcar/confirm')
+def confirm():
+    """ The Page for confirming that the car has been lock/unlocked """
+    return render_template("confirm_unlock.html", locked=locked)
 
 
 @app.route('/smartcar/odom', methods=['GET'])

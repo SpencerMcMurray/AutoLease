@@ -1,0 +1,18 @@
+{% extends "outline.html" %}
+{% block body %}<br>
+<body>
+    <div class="jumbotron">
+        <h1 class="display-5">Thanks!</h1>
+        <h1 class="display-4">Your car has been
+            {% if locked == 1 %}
+                Locked!
+            {% else %}
+                Unlocked!
+            {% endif %}
+        </h1>
+    </div>
+    <p>
+        Please exit this window and enjoy your ride!
+    </p>
+</body>
+{% endblock body %}
