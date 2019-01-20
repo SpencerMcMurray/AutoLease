@@ -189,7 +189,6 @@ def decode_notification_status(value):
 '''
 
 
-
 def sendMoneyRequestOneTimeContact(accessToken, thirdPartyAccessid, requestId, deviceId,  apiRegistrationId, fromDate, expiryDate , amount = 'string',email='string', applicationId='string',referenceNumber = 'string', sourceMoneyRequestId = 'string', requestFromContactName = 'string', language = 'en', notificationPrefHandle = 'string', notificationHandleType = 'string', active = 'string', currency = 'string', editableFulfillAmount='false', requesterMessage = 'string',
 invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 'string', returnURL = 'string', creationDate = 'string', status = 'string', fulfillAmount = 'string', responderMessage = 'string', notificationStatus = 'string'):
 
@@ -240,7 +239,6 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
     dataRec = response.json()
     print('sendMoneyRequestOneTimeContact Data: ')
     print(dataRec)
-    # print(notificationStatus)
 
 #
 # '''
@@ -497,30 +495,32 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
 #
 #     return (response.text)
 
-# def getTranscationStatus():
-#
-#     conn = http.client.HTTPConnection("gateway-web,beta,interac,ca")
-#
-#     payload = "{\n\t\n}"
-#
-#     headers = {
-#         'Content-Type':"application/json",
-#         'accessToken':"Bearer e8ecd550-33db-456e-9671-b441c5e8fb33",
-#         'thirdPartyAccessId':"CA1TAz4wCrnk8eyx",
-#         'apiRegistrationId':"CA1ARHQj3sb5KWYD",
-#         'requestId':"asdf",
-#         'deviceId':"asdf",
-#         'cache-control':"no-cache",
-#         'Postman-Token':"809c0beb-76b5-427a-aa2b-dd38ae2e252b"
-#     }
-#
-#     conn.request("GET", "publicapi,api,v2,money-requests,send", payload,
-#                  headers)
-#
-#     res = conn.getresponse()
-#     data = res.read()
-#
-#     return decode_money_request_status(str(data))
+def getTranscationStatus():
+
+    url = "https://gateway-web.beta.interac.ca/publicapi/api/v2/money-requests/send"
+
+    querystring = {"referenceNumber":"CA1MRmfnz2fr"}
+
+    payload = "{\n\t\n}"
+    headers = {
+        'Content-Type':"application/json",
+        'accessToken':"Bearer 406d2f45-263d-4dbd-ad08-8176907cab25",
+        'thirdPartyAccessId':"CA1TAuUG9Ned35wF",
+        'apiRegistrationId':"CA1ARFrD8x2J5U94",
+        'requestId':"asdf",
+        'deviceId':"asdf",
+        'cache-control':"no-cache",
+        'Postman-Token':"9a730192-d4eb-4805-869a-6e7a83a0c211"
+    }
+    response = requests.request("GET", url, data = payload, headers = headers,
+                                params = querystring)
+    print(response.json())
+    json_str = response.json()[0]
+
+    if(decode_money_request_status((json_str['status'])=='3')):
+        return True
+    else:
+        return False
 
 def generateRandomString():
     firstGate = random.randint(0,3)

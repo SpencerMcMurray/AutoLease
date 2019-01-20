@@ -60,7 +60,7 @@ from contacts import getContactThroughContactID
 
 from moneyRequests import decode_money_request_status
 from moneyRequests import decode_notification_status
-from moneyRequests import sendMoneyRequest
+# from moneyRequests import sendMoneyRequest
 from moneyRequests import sendMoneyRequestOneTimeContact
 
 
@@ -70,13 +70,13 @@ url2 = 'https://gateway-web.beta.interac.ca/publicapi/api/v2/'
 
 def main():
     
-    secretKey  = 'NVgO3PKxvMe5sueJAIjFiRT72JPfbBUFKQViGqQCekM'
+    secretKey  = 'k5PG9-GT0x016M-rKZPqpCPQYj2HFlLXTU8kJpQl5L8'
     salt = createSalt()
     keyAndSalt = salt + ':' + secretKey
-    thirdPartyAccessid = 'CA1TAJktHqdaRvvA'
+    thirdPartyAccessid = 'CA1TAuUG9Ned35wF'
     requestId = 'requestID'
     deviceID = 'deviceID'
-    apiRegistrationId = 'CA1ARDuFreeGEsCA'
+    apiRegistrationId = 'CA1ARFrD8x2J5U94'
     email = 'chaudherymanik@yahoo.com'
     name = 'bhai'
     contactID = 'CAb6354mWzEW'    
@@ -92,7 +92,7 @@ def main():
 
     print('starting')
 
-    auth(salt, encodedKey, thirdPartyAccessid)
+    return auth(salt, encodedKey, thirdPartyAccessid)
 
     #addContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, email, name)
     #getContacts(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId)
