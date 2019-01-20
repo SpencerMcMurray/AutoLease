@@ -14,6 +14,7 @@ import base64
 import random #for salt
 import string
 import requests
+import ast
 import json
 import hashlib
 
@@ -420,63 +421,63 @@ invoiceNumber = 'string', dueDate = 'string', supressResponderNotifications = 's
 #  * return string                       [JSON string with all the existing money requests]
 #  * Important to get rid of contact id and hash id and specify the email for request
 # '''
-def getMoneyRequest(access_token, thirdPartyAccessId, requestId, deviceId, apiRegistrationId, fromDate = 'string',  toDate='string', maxResponseItems='string', offset='string', sortBy='string', orderBy='string', sourceMoneyRequestId='string', referenceNumber='string', applicationId='string', params = ''):
+def getMoneyRequest(access_token, thirdPartyAccessId, requestId, deviceId, apiRegistrationId, fromDate = 'string',  toDate='string', referenceNumber='string', maxResponseItems='string', offset='string', sortBy='string', orderBy='string', sourceMoneyRequestId='string', applicationId='string', params = ''):
 
     params = ''
-
-    if fromDate != 'string':
-        if len(params) == 0:
-            params += ('?fromDate=' + fromDate)
-        else:
-            params += ('&fromDate=' + fromDate)
-
-    if toDate != 'string':
-        if len(params) == 0:
-            params += ('?toDate=' + toDate)
-        else:
-            params += ('&toDate=' + toDate)
-
-    if maxResponseItems != 'string':
-        if len(params) == 0:
-            params += ('?maxResponseItems=' + maxResponseItems)
-        else:
-            params += ('&maxResponseItems=' + maxResponseItems)
-
-    if offset != 'string':
-        if len(params) == 0:
-            params += ('?offset=' + offset)
-        else:
-            params += ('&offset=' + offset)
-
-    if sortBy != 'string':
-        if len(params) == 0:
-            params += ('?sortBy=' + sortBy)
-        else:
-            params += ('&sortBy=' + sortBy)
-
-    if orderBy != 'string':
-        if len(params) == 0:
-            params += ('?referenceNumber=' + referenceNumber)
-        else:
-            params += ('&referenceNumber=' + referenceNumber)
-
-    if sourceMoneyRequestId != 'string':
-        if len(params) == 0:
-            params += ('?sourceMoneyRequestId=' + sourceMoneyRequestId)
-        else:
-            params += ('&sourceMoneyRequestId=' + sourceMoneyRequestId)
-
     if referenceNumber != 'string':
         if len(params) == 0:
             params += ('?referenceNumber=' + referenceNumber)
         else:
             params += ('&referenceNumber=' + referenceNumber)
+    else:
 
-    if applicationId != 'string':
-        if len(params) == 0:
-            params += ('?applicationId=' + applicationId)
-        else:
-            params += ('&applicationId=' + applicationId)
+        if fromDate != 'string':
+            if len(params) == 0:
+                params += ('?fromDate=' + fromDate)
+            else:
+                params += ('&fromDate=' + fromDate)
+
+        if toDate != 'string':
+            if len(params) == 0:
+                params += ('?toDate=' + toDate)
+            else:
+                params += ('&toDate=' + toDate)
+
+        if maxResponseItems != 'string':
+            if len(params) == 0:
+                params += ('?maxResponseItems=' + maxResponseItems)
+            else:
+                params += ('&maxResponseItems=' + maxResponseItems)
+
+        if offset != 'string':
+            if len(params) == 0:
+                params += ('?offset=' + offset)
+            else:
+                params += ('&offset=' + offset)
+
+        if sortBy != 'string':
+            if len(params) == 0:
+                params += ('?sortBy=' + sortBy)
+            else:
+                params += ('&sortBy=' + sortBy)
+
+        if orderBy != 'string':
+            if len(params) == 0:
+                params += ('?referenceNumber=' + referenceNumber)
+            else:
+                params += ('&referenceNumber=' + referenceNumber)
+
+        if sourceMoneyRequestId != 'string':
+            if len(params) == 0:
+                params += ('?sourceMoneyRequestId=' + sourceMoneyRequestId)
+            else:
+                params += ('&sourceMoneyRequestId=' + sourceMoneyRequestId)
+
+        if applicationId != 'string':
+            if len(params) == 0:
+                params += ('?applicationId=' + applicationId)
+            else:
+                params += ('&applicationId=' + applicationId)
 
     print(params)
 
@@ -495,6 +496,16 @@ def getMoneyRequest(access_token, thirdPartyAccessId, requestId, deviceId, apiRe
     print(response.text)
 
     return (response.text)
+
+def get_status_from_dict(listOfDicts):
+
+    # print(StringOfDicts)
+    location = listOfDicts.find("\"status\"")
+    if(location!=-1):
+        return listOfDicts[location+9]
+
+
+
 
 
 def generateRandomString(size = 7, chars = string.ascii_uppercase + string.digits):

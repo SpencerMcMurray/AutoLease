@@ -35,11 +35,19 @@ def main(email_id,amount):
 
     
     #money
-
-    print(moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate))
     # moneyRequests.sendMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate)
-    link=moneyRequests.sendMoneyRequestOneTimeContact(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate, amount)
-    print(link)
+    ref = moneyRequests.getMoneyRequest(access_token, thirdPartyAccessid, requestId, deviceID, apiRegistrationId, fromDate, toDate,'CA1MRS2QrhGr')
+    link = moneyRequests.sendMoneyRequestOneTimeContact(access_token,
+                                                        thirdPartyAccessid,
+                                                        requestId, deviceID,
+                                                        apiRegistrationId,
+                                                        fromDate, toDate,
+                                                        amount)
+    # print(ref)
+    print(moneyRequests.get_status_from_dict(ref))
+    # while(moneyRequests.get_status_from_dict(ref)!='8' or moneyRequests.get_status_from_dict(ref)!='7'):
+    #     ref = link.split("/")[-1]
+
 def encodeSecretKey(keyAndSalt):
     h = hashlib.sha256()
     h.update(keyAndSalt.encode())
