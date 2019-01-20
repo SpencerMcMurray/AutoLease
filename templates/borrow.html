@@ -99,7 +99,13 @@ $(document).ready(function (e) {
                         </div>
                         <span class="text-muted"></span>
                     </div>
-                    <input type="submit" value="Book the Car" style="width: 100%; margin: 0 auto;" class="btn btn-primary">
+                    {% if user.is_authenticated %}
+                        <input type="submit" value="Book the Car" style="width: 100%; margin: 0 auto;" class="btn btn-primary">
+                    {% else %}
+                        <a href="{{ url_for('login') }}" style="width: 100%; margin: 0 auto;" class="btn btn-primary">
+                            Please Log In
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </form>

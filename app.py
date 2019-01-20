@@ -126,6 +126,9 @@ def borrow():
                                                    '2019-01-20T16:12:12.000Z', int(request.form.get('total-in')))
         session['model'] = request.form.get('model')
         session['time'] = request.form.get('time')
+        db.assign_borrow(log.current_user.id,
+                         (datetime.datetime.now() + datetime.timedelta(days=int(session['time']))).strftime("%Y-%m-%d"),
+                         session['model'], 1)
         return render_template("borrow.html", user=log.current_user, money_url=money_url)
     return render_template("borrow.html", user=log.current_user, money_url=None)
 

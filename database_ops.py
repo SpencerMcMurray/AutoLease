@@ -89,3 +89,9 @@ def get_my_lendings(uid):
     db.con.close()
     return borrows
 
+
+def assign_borrow(user, date, model, paid):
+    db = Database()
+    q = """INSERT INTO `borrows` (`user`, `end_date`, `model`, `paid_for`) VALUES (%s, %s, %s, %s)"""
+    db.cur.execute(q, (user, date, model, paid))
+    db.con.close()
