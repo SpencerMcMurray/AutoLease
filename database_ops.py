@@ -71,7 +71,7 @@ def get_my_borrows(uid):
     Returns the history of all cars borrowed by the user
     """
     db = Database()
-    q = """SELECT * FROM `borrows` WHERE `user` = %s ORDER BY `date` ASC"""
+    q = """SELECT * FROM `borrows` WHERE `user` = %s ORDER BY end_date ASC"""
     db.cur.execute(q, uid)
     borrows = db.cur.fetchall()
     db.con.close()

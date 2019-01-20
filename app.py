@@ -6,6 +6,7 @@ import smartcar
 import os
 from flask import Flask, redirect, request, jsonify, render_template, url_for, session
 from flask_cors import CORS
+from moneyRequests import sendMoneyRequestOneTimeContact
 
 app = Flask(__name__)
 app.secret_key = os.urandom(16)
@@ -113,10 +114,19 @@ def account():
     return render_template("account.html", user=log.current_user, borrows=borrows, lendings=lendings, lend_id=lend_id)
 
 
-@app.route('/borrow')
+@app.route('/borrow', methods=["GET", "POST"])
 def borrow():
     """The borrow a car page"""
-    return render_template("borrow.html", user=log.current_user)
+    if request.method == "POST":
+        # Ugly, but thats life.
+        money_url = sendMoneyRequestOneTimeContact('b51e7f6a-18ef-473d-afe7-b5abbd026d9c',
+                                                   'CA1TAuUG9Ned35wF', 'requestID',
+                                                   'deviceID', 'CA1ARFrD8x2J5U94', '2019-01-18T16:12:12.000Z',
+                                                   '2019-01-20T16:12:12.000Z', int(request.form.get('total')))
+        session['model'] = request.form.get('model')
+        session['time'] = request.form.get('time')
+        return render_template("borrow.html", user=log.current_user, money_url=money_url)
+    return render_template("borrow.html", user=log.current_user, money_url=None)
 
 
 @app.route('/smartcar/login', methods=['GET'])

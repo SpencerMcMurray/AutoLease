@@ -2,7 +2,7 @@
 {% block body %}
 <body class="text-center">
     <div class="jumbotron">
-        <h1 class="display-4" style="text-align: center;">{{ user.email }}</h1>
+        <h1 class="display-4" style="text-align: center;">Welcome!</h1>
     </div>
     <div class="container d-flex justify-content-around flex-wrap">
         <div class="col-md-4">
@@ -13,11 +13,11 @@
                     {% if borrow['paid_for'] == 1 %}
                         <button class="btn btn-primary" onclick="window.open('{{ url_for("smart_login") }}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');">
                             Lock/Unlock: {{ borrow['model'] }}<br>
-                            {{ borrow['date'].strftime('%B %d, %Y') }}
+                            {{ borrow['end_date'].strftime('%B %d, %Y') }}
                         </button>
                     {% else %}
                         {{ borrow['model'] }}<br>
-                        {{ borrow['date'].strftime('%B %d, %Y') }}
+                        {{ borrow['end_date'].strftime('%B %d, %Y') }}
                     {% endif %}<br>
                 </div>
             </div>
