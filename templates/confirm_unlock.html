@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Imports -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" sizes="16x16 32x32" type="image/png">
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AutoLease</title>
+</head>
+<nav class="navbar fixed-top navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                <img height = "32px" src="https://cdn.discordapp.com/attachments/533378356305985561/536316066394144780/dark_logo_small.png" alt="AutoLease">
+            </a>
+        </div>
+    </div>
+</nav>
+<body class="text-center">
+    <div class="jumbotron">
+        <h1 class="display-4">Thanks!</h1>
+        <h1 class="display-5">Your car has been
+            {% if locked == 1 %}
+                Locked!
+            {% else %}
+                Unlocked!
+            {% endif %}
+        </h1>
+    </div>
+    <p>
+        Please exit this window and enjoy your ride!
+    </p>
+</body>
+{% endblock body %}

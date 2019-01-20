@@ -1,8 +1,95 @@
 {% extends "outline.html" %}
 {% block body %}<br>
 <body>
-    <div class="jumbotron">
-        <h1 class="display-4" style="text-align: center;">Home Page</h1>
+    <div class="container-fluid text-center" style="width: 100%;">
+        <div class="jumbotron">
+            <h1 class="display-4" style="text-align: center;">
+                <img width = "196px" src="https://cdn.discordapp.com/attachments/533378356305985561/536439522133671936/light_logo.png" alt="AutoLease">AutoLease<img width = "196px" src="https://cdn.discordapp.com/attachments/533378356305985561/536442501486346240/blank_logo.png" alt="AutoLease">
+            </h1>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/car.png" width = "75%"/>
+                <label>
+                    Don't have a car? Can't afford a better car?
+                </label>
+                <br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/dream.jpg" width = "75%"/>
+                <label>
+                    Want to experience a car without actually buying it? Want to impress your friends?
+                </label>
+                <br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/tesla.png" width = "75%"/>
+                <label>
+                    We can help with that! At the moment, we have the Tesla Model S series of vehicles available for loan.
+                </label>
+                <br/>
+            </div>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/light_logo.png" width = "50%"/>
+                <br/><br/>
+                <label>
+                    AutoLease may be the solution for you, whether you want to borrow or lend a car!
+                </label>
+                <br/><br/><br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/smartcar.jpg" width = "50%"/>
+                <br/><br/>
+                <label>
+                    With the power of SmartCar, we provide automated car access and analytics.
+                </label>
+                <br/><br/><br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/interac.png" width = "50%"/>
+                <br/><br/>
+                <label>
+                    We process payments and requests securely with Interac.
+                </label>
+                <br/><br/><br/>
+            </div>
+        </div>
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/phone.jpg" width = "50%"/>
+                <br/><br/><br/>
+                <label>
+                    Book a car and pay the fees from your phone.
+                </label>
+                <br/><br/><br/><br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/lock.png" width = "50%"/>
+                <br/><br/><br/>
+                <label>
+                    AutoLease can unlock the car from your phone.
+                </label>
+                <br/><br/><br/><br/>
+            </div>
+            <div class="col-md-4">
+                <img src="https://gitlab.com/leglesslamb/autolease/raw/master/resources/clock.jpg" width = "50%"/>
+                <br/><br/><br/>
+                <label>
+                    Schedule to borrow the car for as long as a week.
+                </label>
+                <br/><br/><br/><br/>
+            </div>
+        </div>
+        <br/><br/>
+        <button href="{{ url_for('borrow') }}" class="nav-link btn btn-md btn-warning btn-block" type="submit" style="width: 50%; margin: 0 auto;">Get 
+        Started</button>
+        <br/><br/>
     </div>
+
 </body>
 {% endblock body %}
